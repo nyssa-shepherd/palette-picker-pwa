@@ -14,7 +14,7 @@ const genRandomHex = () => {
   for (var i = 0; i < 6; i++) {
     hex += possible.charAt(Math.floor(Math.random() * possible.length));
   }
-  console.log(hexArr)
+  
   return randomHexHelper(hex);
 }
 
