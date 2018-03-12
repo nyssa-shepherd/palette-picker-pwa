@@ -24,16 +24,11 @@ const randomHexHelper = hex => {
 }
 
 const setColors = () => {
-  $('.box0').text(hexArr[0]);
-  $('.box0').css('background-color', hexArr[0]);
-  $('.box1').text(hexArr[1]);
-  $('.box1').css('background-color', hexArr[1]);
-  $('.box2').text(hexArr[2]);
-  $('.box2').css('background-color', hexArr[2]);
-  $('.box3').text(hexArr[3]);
-  $('.box3').css('background-color', hexArr[3]);
-  $('.box4').text(hexArr[4]);
-  $('.box4').css('background-color', hexArr[4]);
+  $('.box0').text(hexArr[0]).css('background-color', hexArr[0]);
+  $('.box1').text(hexArr[1]).css('background-color', hexArr[1]);
+  $('.box2').text(hexArr[2]).css('background-color', hexArr[2]);
+  $('.box3').text(hexArr[3]).css('background-color', hexArr[3]);
+  $('.box4').text(hexArr[4]).css('background-color', hexArr[4]);
   hexArr = [];
 }
 
