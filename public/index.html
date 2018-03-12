@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./css/styles.css">
+  </head>
+  <body>
+    <h1>palette picker</h1>
+    <div class='body-area'>
+      <section class='color-and-button'>
+        <section class='color-area'>
+          <div class='color-box'></div>
+          <div class='color-box'></div>
+          <div class='color-box'></div>
+          <div class='color-box'></div>
+          <div class='color-box'></div>
+        </section>
+        <button class='gen-button'>Generate New Palette</button>
+        <form>
+          <input type='text'
+                 placeholder='Palette name'
+          />
+          <button>Save Palette</button>
+        </form>
+      </section>
+      <section class='create-project-area'>
+        <h3>Project Palettes</h3>
+        <form>
+          <h4>Create a new project:</h3>
+          <input type='text'
+                 id='project-input'
+                 placeholder='New project name'
+          />
+          <button class='save-project-button'>Save Project</button>
+        </form>
+      </section>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="./jquery/jquery-3.2.1.js"><\/script>')</script>
+    <script src="./js/index.js"></script>
+  </body>
+</html>
