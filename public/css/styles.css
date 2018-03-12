@@ -1,0 +1,21 @@
+.color-and-button {
+  display: flex;
+  flex-direction: column;
+}
+
+.body-area {
+  display: flex;
+  flex-direction: row;
+}
+
+.color-area {
+  display: flex;
+  flex-direction: row;
+}
+
+.color-box {
+  border: 1px solid black;
+  height: 100px;
+  width: 75px;
+}
+
