@@ -65,6 +65,7 @@ select {
   background-color:  rgba(209, 206, 190, 1);
   height: 580px;
   padding-left: 30px;
+  overflow: scroll;
   width: 21%;
 }
 
@@ -97,7 +98,17 @@ h4 {
 
 .proj-name {
   font-size: 20px;
-  margin-left: -37px;
+}
+
+.saved-colors {
+  display: flex;
+  flex-direction: row;
+}
+
+.small-box {
+  border: 1px black solid;
+  height: 50px;
+  width: 50px;
 }
 
 

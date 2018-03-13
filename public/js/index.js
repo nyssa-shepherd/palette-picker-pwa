@@ -1,19 +1,55 @@
 let hexArr = [];
 const projectArr = [];
+const projObj = {
+  name: '',
+  palName: [],
+  colors: []
+}
+
+const fetchProjects = async() => {
+  const response = await fetch('/api/v1/projects');
+  const projects = await response.json();
+  projects.forEach(project => fetchPalettes(project));
+}
 
 const submitProject = e => {
   e.preventDefault();
   let input = $('#project-input').val();
+  projObj.name = input;
 
-  projectArr.push(input);
+  projectArr.push(projObj);
   $('#project-input').val(''); 
-  renderProject(input);
-  addProjOptions(input);
+  renderProject();
 }
 
-const renderProject = (input) => {
-  $('.projects').prepend(`<h3 class='proj-name'>${input}</h3>`);
-  $('select').prepend(`<option>${input}</option>`);
+const renderProject = (palettes, project) => {
+  $('.projects').prepend(`<h3 class='proj-name'>${project.projectName}</h3>`);
+  $('select').append(`<option>${project.projectName}</option>`);
+
+  palettes.forEach(palette => {
+    $('.palette').append(`
+      <h4>${palette.paletteName}</h4>
+      <div class='saved-colors'>
+        <div class='small-box 0'></div>
+        <div class='small-box 1'></div>
+        <div class='small-box 2'></div>
+        <div class='small-box 3'></div>
+        <div class='small-box 4'></div>
+      </div>
+    `)
+ 
+    $('.0').css('background-color', palette.color0);
+    $('.1').css('background-color', palette.color1);
+    $('.2').css('background-color', palette.color2);
+    $('.3').css('background-color', palette.color3);
+    $('.4').css('background-color', palette.color4);
+  });
+  
+}
+
+const callHex = () => {
+  hexArr = [];
+  genRandomHex();
 }
 
 const genRandomHex = () => {
@@ -38,12 +74,38 @@ const setColors = () => {
   $('.box2').text(hexArr[2]).css('background-color', hexArr[2]);
   $('.box3').text(hexArr[3]).css('background-color', hexArr[3]);
   $('.box4').text(hexArr[4]).css('background-color', hexArr[4]);
-  hexArr = [];
 }
 
-$(document).ready(genRandomHex);
+const fetchPalettes = async(project) => {
+  const response = await fetch(`/api/v1/palettes/${project.id}`);
+  const palettes = await response.json();
+  renderProject(palettes, project);
+}
+
+const savePalette = (e) => {
+  e.preventDefault();
+  const palObj = {
+    projName: $('select').val(),
+    palName: $('#pal-name-input').val(),
+    colors: hexArr
+  }
+
+  let match = projectArr.find(proj => proj.name === palObj.projName ? proj : null);
+  match.palName.push(palObj.palName);
+  match.colors = palObj.colors;
+  console.log(projectArr);
+  $('#pal-name-input').val('');
+}
+
+$(document).ready(() => {
+  fetchProjects();
+  fetchPalettes();
+  genRandomHex();
+});
+$('.save-pal-btn').on('click', savePalette);
 $('.save-project-button').on('click', submitProject);
-$('.gen-button').on('click', genRandomHex);
+$('.gen-button').on('click', callHex);
+
 
 
 
