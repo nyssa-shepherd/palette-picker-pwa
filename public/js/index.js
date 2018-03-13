@@ -6,20 +6,20 @@ const projObj = {
   colors: []
 }
 
-const submitProject = e => {
-  e.preventDefault();
-  let input = $('#project-input').val();
-  projObj.name = input;
+// const submitProject = e => {
+//   e.preventDefault();
+//   let input = $('#project-input').val();
+//   projObj.name = input;
 
-  projectArr.push(projObj);
-  $('#project-input').val(''); 
-  renderProject(input);
-}
+//   projectArr.push(projObj);
+//   $('#project-input').val(''); 
+//   renderProject(input);
+// }
 
-const renderProject = (input) => {
-  $('.projects').prepend(`<h3 class='proj-name'>${input}</h3>`);
-  $('select').prepend(`<option>${input}</option>`);
-}
+// const renderProject = (input) => {
+//   $('.projects').prepend(`<h3 class='proj-name'>${input}</h3>`);
+//   $('select').prepend(`<option>${input}</option>`);
+// }
 
 const callHex = () => {
   hexArr = [];
