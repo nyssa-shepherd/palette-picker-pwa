@@ -72,12 +72,14 @@ select {
 }
 
 h3 {
+  color: rgba(0, 0, 0, 0.8);
   font-family: 'Acme', sans-serif;
   font-size: 28px;
   margin-bottom: 15px;
 }
 
 h4 {
+  color: rgba(0, 0, 0, 0.7);
   font-family: 'Asap', sans-serif;
   font-size: 15px;
   margin: 5px 0px;
@@ -110,8 +112,8 @@ h4 {
 
 .small-box {
   border: 1px black solid;
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
 }
 
 
