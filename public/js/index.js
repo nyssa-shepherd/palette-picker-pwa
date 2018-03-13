@@ -32,6 +32,7 @@ const setColors = () => {
   hexArr = [];
 }
 
+$(document).ready(genRandomHex);
 $('.save-project-button').on('click', submitProject);
 $('.gen-button').on('click', genRandomHex);
 
