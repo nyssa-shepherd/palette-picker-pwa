@@ -9,7 +9,7 @@ const submitProject = e => {
 }
 
 const renderProject = (input) => {
-  $('.projects').prepend(`<p>${input}</p>`);
+  $('.projects').prepend(`<h3 class='proj-name'>${input}</h3>`);
 }
 
 const genRandomHex = () => {
