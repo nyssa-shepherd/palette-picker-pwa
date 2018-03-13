@@ -18,6 +18,15 @@ app.locals.palettes = [
     color2: '#983c23',
     color3: '#edb9c1',
     color4: '#023cc2'
+  },
+  {
+    id: 2, 
+    paletteName: 'Gnarley Green',
+    color0: '#b332cd',
+    color1: '#52d6a4',
+    color2: '#9839b3',
+    color3: '#e409c1',
+    color4: '#1a3cb2'
   }
 ]
 

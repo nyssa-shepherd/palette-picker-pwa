@@ -24,7 +24,7 @@ const submitProject = e => {
 
 const renderProject = (palettes, project) => {
   $('.projects').prepend(`<h3 class='proj-name'>${project.projectName}</h3>`);
-  $('select').prepend(`<option>${project.projectName}</option>`);
+  $('select').append(`<option>${project.projectName}</option>`);
 
   palettes.forEach(palette => {
     $('.palette').append(`
@@ -43,7 +43,8 @@ const renderProject = (palettes, project) => {
     $('.2').css('background-color', palette.color2);
     $('.3').css('background-color', palette.color3);
     $('.4').css('background-color', palette.color4);
-  })
+  });
+  
 }
 
 const callHex = () => {
