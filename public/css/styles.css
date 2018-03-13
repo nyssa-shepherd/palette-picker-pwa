@@ -61,5 +61,26 @@ select {
   width: 21%;
 }
 
+h3 {
+  font-family: 'Acme', sans-serif;
+  font-size: 28px;
+}
+
+h4 {
+  font-family: 'Asap', sans-serif;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+#project-input {
+  height: 25px;
+  width: 200px;
+}
+
+.save-project-button {
+  height: 30px;
+  width: 60px;
+}
+
 
 
