@@ -1,15 +1,19 @@
 let hexArr = [];
+const projectArr = [];
 
 const submitProject = e => {
   e.preventDefault();
   let input = $('#project-input').val();
 
+  projectArr.push(input);
   $('#project-input').val(''); 
   renderProject(input);
+  addProjOptions(input);
 }
 
 const renderProject = (input) => {
   $('.projects').prepend(`<h3 class='proj-name'>${input}</h3>`);
+  $('select').prepend(`<option>${input}</option>`);
 }
 
 const genRandomHex = () => {
