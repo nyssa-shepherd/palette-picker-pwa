@@ -9,7 +9,7 @@ const projObj = {
 const fetchProjects = async() => {
   const response = await fetch('/api/v1/projects');
   const projects = await response.json();
-  console.log(projects)
+  renderProject(projects);
 }
 
 const submitProject = e => {
@@ -19,12 +19,14 @@ const submitProject = e => {
 
   projectArr.push(projObj);
   $('#project-input').val(''); 
-  renderProject(input);
+  renderProject();
 }
 
-const renderProject = (input) => {
-  $('.projects').prepend(`<h3 class='proj-name'>${input}</h3>`);
-  $('select').prepend(`<option>${input}</option>`);
+const renderProject = (projects) => {
+  projects.forEach( project => {
+    $('.projects').prepend(`<h3 class='proj-name'>${project.projectName}</h3>`);
+    $('select').prepend(`<option>${project.projectName}</option>`);
+  })
 }
 
 const callHex = () => {
