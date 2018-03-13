@@ -5,13 +5,22 @@ const app = express();
 app.use(express.static('public'));
 app.set('port', process.env.PORT || 3000);
 
-app.locals.projects = [{id: 1, name: "sad"}];
+app.locals.projects = [
+  {id: 1, projectName: 'Nyssa\'s Hot Shit Project'},
+  {id: 2, projectName: 'Nyssa\'s Bad Ass Project'}
+];
 
 app.get('/api/v1/projects', (request, response) => {
   const { projects } = app.locals;
   response.status(200).json(projects);
 });
 
+app.post('/api/v1/projects', (request, response) => {
+  const id = 1;
+  const project = request.body;
+  app.locals.projects.push({ id, project });
+  response.status(201).json({ id, project });
+}); 
 
 app.listen(app.get('port'), () => {
   console.log('Express intro running on localhost:3000');
