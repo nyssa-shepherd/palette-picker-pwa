@@ -6,20 +6,26 @@ const projObj = {
   colors: []
 }
 
-// const submitProject = e => {
-//   e.preventDefault();
-//   let input = $('#project-input').val();
-//   projObj.name = input;
+const fetchProjects = async() => {
+  const response = await fetch('/api/v1/projects');
+  const projects = await response.json();
+  console.log(projects)
+}
 
-//   projectArr.push(projObj);
-//   $('#project-input').val(''); 
-//   renderProject(input);
-// }
+const submitProject = e => {
+  e.preventDefault();
+  let input = $('#project-input').val();
+  projObj.name = input;
 
-// const renderProject = (input) => {
-//   $('.projects').prepend(`<h3 class='proj-name'>${input}</h3>`);
-//   $('select').prepend(`<option>${input}</option>`);
-// }
+  projectArr.push(projObj);
+  $('#project-input').val(''); 
+  renderProject(input);
+}
+
+const renderProject = (input) => {
+  $('.projects').prepend(`<h3 class='proj-name'>${input}</h3>`);
+  $('select').prepend(`<option>${input}</option>`);
+}
 
 const callHex = () => {
   hexArr = [];
@@ -65,7 +71,10 @@ const savePalette = (e) => {
   $('#pal-name-input').val('');
 }
 
-$(document).ready(genRandomHex);
+$(document).ready(() => {
+  fetchProjects();
+  genRandomHex();
+});
 $('.save-pal-btn').on('click', savePalette);
 $('.save-project-button').on('click', submitProject);
 $('.gen-button').on('click', callHex);
