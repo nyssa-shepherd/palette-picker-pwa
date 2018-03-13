@@ -1,5 +1,12 @@
+body {
+  background-color: rgba(209, 206, 190, 0.719);
+}
+
+h1 {
+  font-family: 'Acme', sans-serif;
+}
+
 .color-and-button {
-  background-color: pink;
   display: flex;
   flex-direction: column;
   margin-right: 40px;
@@ -17,10 +24,12 @@
 }
 
 .color-box {
-  background-color: #fff;
-  border: 1px solid black;
+  color: #fff;
+  font-family: 'Asap', sans-serif;
+  font-size: 24px;
   height: 400px;
   margin: 3px;
+  text-align: center;
   width: 200px;
 }
 
@@ -30,7 +39,6 @@
 }
 
 .create-project-area {
-  background-color: green;
   width: 25%;
 }
 
