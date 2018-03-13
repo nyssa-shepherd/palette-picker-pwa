@@ -9,8 +9,8 @@ h1 {
 .color-and-button {
   display: flex;
   flex-direction: column;
-  margin-right: 40px;
-  width: 75%;
+  margin-right: 55px;
+  width: 72%;
 }
 
 .body-area {
@@ -35,11 +35,31 @@ h1 {
 }
 
 .gen-button {
-  margin: 30px 0;
+  margin: 40px 0;
   height: 40px;
 }
 
-.create-project-area {
-  width: 25%;
+#pal-name-input {
+  height: 40px;
+  width: 670px;
 }
+
+.save-pal-btn {
+  height: 45px;
+  width: 120px;
+}
+
+select {
+  height: 45px;
+  width: 220px;
+}
+
+.create-project-area {
+  background-color:  rgba(209, 206, 190, 1);
+  height: 580px;
+  padding-left: 30px;
+  width: 21%;
+}
+
+
 
