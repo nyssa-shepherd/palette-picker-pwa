@@ -9,7 +9,7 @@ const projObj = {
 const fetchProjects = async() => {
   const response = await fetch('/api/v1/projects');
   const projects = await response.json();
-  renderProject(projects);
+  projects.forEach(project => fetchPalettes(project));
 }
 
 const submitProject = e => {
@@ -22,10 +22,27 @@ const submitProject = e => {
   renderProject();
 }
 
-const renderProject = (projects) => {
-  projects.forEach( project => {
-    $('.projects').prepend(`<h3 class='proj-name'>${project.projectName}</h3>`);
-    $('select').prepend(`<option>${project.projectName}</option>`);
+const renderProject = (palettes, project) => {
+  $('.projects').prepend(`<h3 class='proj-name'>${project.projectName}</h3>`);
+  $('select').prepend(`<option>${project.projectName}</option>`);
+
+  palettes.forEach(palette => {
+    $('.palette').append(`
+      <h4>${palette.paletteName}</h4>
+      <div class='saved-colors'>
+        <div class='small-box 0'></div>
+        <div class='small-box 1'></div>
+        <div class='small-box 2'></div>
+        <div class='small-box 3'></div>
+        <div class='small-box 4'></div>
+      </div>
+    `)
+ 
+    $('.0').css('background-color', palette.color0);
+    $('.1').css('background-color', palette.color1);
+    $('.2').css('background-color', palette.color2);
+    $('.3').css('background-color', palette.color3);
+    $('.4').css('background-color', palette.color4);
   })
 }
 
@@ -58,6 +75,12 @@ const setColors = () => {
   $('.box4').text(hexArr[4]).css('background-color', hexArr[4]);
 }
 
+const fetchPalettes = async(project) => {
+  const response = await fetch(`/api/v1/palettes/${project.id}`);
+  const palettes = await response.json();
+  renderProject(palettes, project);
+}
+
 const savePalette = (e) => {
   e.preventDefault();
   const palObj = {
@@ -75,6 +98,7 @@ const savePalette = (e) => {
 
 $(document).ready(() => {
   fetchProjects();
+  fetchPalettes();
   genRandomHex();
 });
 $('.save-pal-btn').on('click', savePalette);
