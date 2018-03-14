@@ -35,6 +35,7 @@ const renderProject = (palettes, project) => {
         <div class='small-box 2'></div>
         <div class='small-box 3'></div>
         <div class='small-box 4'></div>
+        <img class='trash-img 'src='../images/trash.png' />
       </div>
     `)
  
