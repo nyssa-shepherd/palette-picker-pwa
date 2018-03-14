@@ -35,7 +35,7 @@ const renderProject = (palettes, project) => {
         <div class='small-box' style='background-color: ${palette.color2}'></div>
         <div class='small-box' style='background-color: ${palette.color3}'></div>
         <div class='small-box' style='background-color: ${palette.color4}'></div>
-        <img class='trash-img 'src='../images/trash.png' />
+        <div class='trash-img'><div/>
       </div>
     `)
  

@@ -149,10 +149,16 @@ h4 {
 }
 
 .trash-img {
+  background-image: url('../images/trash.png');
+  background-size: 30px;
   height: 30px;
   margin-top: 5px;
   margin-left: 15px;
   width: 30px;
+}
+
+.trash-img:hover {
+  background-image: url('../images/hover-trash.png');
 }
 
 
