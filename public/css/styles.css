@@ -26,12 +26,12 @@ h1 {
 }
 
 .color-box {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.9);
   font-family: 'Asap', sans-serif;
   font-size: 24px;
-  height: 60px;
+  height: 90px;
   margin: 3px;
-  padding-top: 350px;
+  padding-top: 320px;
   text-align: center;
   width: 200px;
 }
@@ -46,6 +46,22 @@ button:hover {
   background-color: rgba(166, 184, 190, 0.8);
   border: none;
   color: #fff;
+}
+
+.lock-btn {
+  background-color: transparent;
+  background-image: url('../images/unlocked.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 25px;
+  height: 25px;
+  margin-bottom: 20px;
+  width: 25px;
+}
+
+.lock-btn:hover {
+  background-image: url('../images/hover-lock.png');
+  background-color: transparent;
 }
 
 .gen-button {

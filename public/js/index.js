@@ -30,20 +30,20 @@ const renderProject = (palettes, project) => {
     $('.palette').append(`
       <h4>${palette.paletteName}</h4>
       <div class='saved-colors'>
-        <div class='small-box 0'></div>
-        <div class='small-box 1'></div>
-        <div class='small-box 2'></div>
-        <div class='small-box 3'></div>
-        <div class='small-box 4'></div>
+        <div class='small-box' style='background-color: ${palette.color0}'></div>
+        <div class='small-box' style='background-color: ${palette.color1}'></div>
+        <div class='small-box' style='background-color: ${palette.color2}'></div>
+        <div class='small-box' style='background-color: ${palette.color3}'></div>
+        <div class='small-box' style='background-color: ${palette.color4}'></div>
         <img class='trash-img 'src='../images/trash.png' />
       </div>
     `)
  
-    $('.0').css('background-color', palette.color0);
-    $('.1').css('background-color', palette.color1);
-    $('.2').css('background-color', palette.color2);
-    $('.3').css('background-color', palette.color3);
-    $('.4').css('background-color', palette.color4);
+    // $('.0').css('background-color', palette.color0);
+    // $('.1').css('background-color', palette.color1);
+    // $('.2').css('background-color', palette.color2);
+    // $('.3').css('background-color', palette.color3);
+    // $('.4').css('background-color', palette.color4);
   });
   
 }
@@ -70,17 +70,24 @@ const randomHexHelper = hex => {
 }
 
 const setColors = () => {
-  $('.box0').text(hexArr[0]).css('background-color', hexArr[0]);
-  $('.box1').text(hexArr[1]).css('background-color', hexArr[1]);
-  $('.box2').text(hexArr[2]).css('background-color', hexArr[2]);
-  $('.box3').text(hexArr[3]).css('background-color', hexArr[3]);
-  $('.box4').text(hexArr[4]).css('background-color', hexArr[4]);
+  $('.color0').text(hexArr[0]);
+  $('.color1').text(hexArr[1]);
+  $('.color2').text(hexArr[2]);
+  $('.color3').text(hexArr[3]);
+  $('.color4').text(hexArr[4]);
+
+  $('.box0').css('background-color', hexArr[0]);
+  $('.box1').css('background-color', hexArr[1]);
+  $('.box2').css('background-color', hexArr[2]);
+  $('.box3').css('background-color', hexArr[3]);
+  $('.box4').css('background-color', hexArr[4]);
 }
 
 const fetchPalettes = async(project) => {
+  console.log(project)
   const response = await fetch(`/api/v1/palettes/${project.id}`);
   const palettes = await response.json();
-  renderProject(palettes, project);
+  await renderProject(palettes, project);
 }
 
 const savePalette = (e) => {
@@ -100,7 +107,6 @@ const savePalette = (e) => {
 
 $(document).ready(() => {
   fetchProjects();
-  fetchPalettes();
   genRandomHex();
 });
 $('.save-pal-btn').on('click', savePalette);
