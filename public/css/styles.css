@@ -36,10 +36,28 @@ h1 {
   width: 200px;
 }
 
+button {
+  border: none;
+  font-family: 'Asap', sans-serif;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: rgba(166, 184, 190, 0.8);
+  border: none;
+  color: #fff;
+}
+
 .gen-button {
-  font-size: 18px;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 24px;
   height: 40px;
   margin: 40px 0;
+}
+
+.save-pal-form {
+  display: flex;
+  justify-content: space-between;
 }
 
 #pal-name-input {
@@ -53,8 +71,7 @@ h1 {
 }
 
 .save-pal-btn {
-  font-size: 14px;
-  height: 45px;
+  height: 46px;
   width: 120px;
 }
 
@@ -96,8 +113,7 @@ h4 {
 }
 
 .save-project-button {
-  font-size: 14px;
-  height: 30px;
+  height: 28px;
   width: 60px;
 }
 
