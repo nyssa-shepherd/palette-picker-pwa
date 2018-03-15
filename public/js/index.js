@@ -28,7 +28,7 @@ const renderProject = (palettes, project) => {
 
   palettes.forEach(palette => {
     $('.palette').append(`
-      <h4>${palette.paletteName}</h4>
+      <h4>${palette.name}</h4>
       <div class='saved-colors'>
         <div class='small-box' style='background-color: ${palette.color0}'></div>
         <div class='small-box' style='background-color: ${palette.color1}'></div>
