@@ -5,6 +5,9 @@ module.exports = {
     userNullAsDefault: true,
     migrations: {
       directory: './db/migrations'
+    },
+    seeds: {
+      directory: './db/seeds/dev'
     }
   }
 };
