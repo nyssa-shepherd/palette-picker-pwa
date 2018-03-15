@@ -38,12 +38,6 @@ const renderProject = (palettes, project) => {
         <div class='trash-img'><div/>
       </div>
     `)
- 
-    // $('.0').css('background-color', palette.color0);
-    // $('.1').css('background-color', palette.color1);
-    // $('.2').css('background-color', palette.color2);
-    // $('.3').css('background-color', palette.color3);
-    // $('.4').css('background-color', palette.color4);
   });
   
 }
@@ -85,7 +79,7 @@ const setColors = () => {
 
 const fetchPalettes = async(project) => {
   console.log(project)
-  const response = await fetch(`/api/v1/palettes/${project.id}`);
+  const response = await fetch(`/api/v1/projects/${project.id}/palettes`);
   const palettes = await response.json();
   await renderProject(palettes, project);
 }

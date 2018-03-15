@@ -26,7 +26,7 @@ app.post('/api/v1/projects', (request, response) => {
   response.status(201).json({ id, project });
 });
 
-app.get('/api/v1/palettes/:id', (request, response) => {
+app.get('/api/v1/projects/:id/palettes', (request, response) => {
   database('palettes').select()
     .then((palettes) => {
       response.status(200).json(palettes);
