@@ -20,10 +20,23 @@ app.get('/api/v1/projects', (request, response) => {
 });
 
 app.post('/api/v1/projects', (request, response) => {
-  const id = 1;
   const project = request.body;
-  app.locals.projects.push({ id, project });
-  response.status(201).json({ id, project });
+
+  for (let requiredParameter of ['name']) {
+    if (!project[requiredParameter]) {
+      return response
+        .status(422)
+        .send({ error: `Expected format: { name: <String> }. You're missing a "${requiredParameter}" property.` });
+    }
+  }
+
+  database('projects').insert(projects, 'id')
+    .then(projects => {
+      response.status(201).json({ id: projects_id[0] })
+    })
+    .catch(error => {
+      response.status(500).json({ error });
+    });
 });
 
 app.get('/api/v1/projects/:id/palettes', (request, response) => {
