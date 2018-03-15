@@ -39,17 +39,18 @@ const renderProject = (palettes, project) => {
 
 const submitProject = async(e) => {
   e.preventDefault();
-  let input = $('#project-input').val();
-  projObj.name = input;
+  let name = $('#project-input').val();
+  projObj.name = name;
 
   projectArr.push(projObj);
 
   const post = await fetch('/api/v1/projects', {
     method: 'POST',
-    body: input, 
+    body: JSON.stringify({ name }), 
     headers: new Headers({ 'Content-Type': 'application/json' })
   })
 
+  console.log(post)
   const postProject = await post.json();
   console.log(postProject);
 

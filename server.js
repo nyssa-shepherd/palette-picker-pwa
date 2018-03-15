@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
+app.use(bodyParser.json());
 app.use(express.static('public'));
 app.set('port', process.env.PORT || 3000);
 
@@ -20,10 +21,10 @@ app.get('/api/v1/projects', (request, response) => {
 });
 
 app.post('/api/v1/projects', (request, response) => {
-  const project = request.body;
+  const projects = request.body;
 
   for (let requiredParameter of ['name']) {
-    if (!project[requiredParameter]) {
+    if (!projects[requiredParameter]) {
       return response
         .status(422)
         .send({ error: `Expected format: { name: <String> }. You're missing a "${requiredParameter}" property.` });
@@ -32,7 +33,7 @@ app.post('/api/v1/projects', (request, response) => {
 
   database('projects').insert(projects, 'id')
     .then(projects => {
-      response.status(201).json({ id: projects_id[0] })
+      response.status(201).json({ id: projects_id[0], name: projects.name })
     })
     .catch(error => {
       response.status(500).json({ error });
