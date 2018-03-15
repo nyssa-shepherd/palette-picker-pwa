@@ -23,8 +23,8 @@ const submitProject = e => {
 }
 
 const renderProject = (palettes, project) => {
-  $('.projects').prepend(`<h3 class='proj-name'>${project.projectName}</h3>`);
-  $('select').append(`<option>${project.projectName}</option>`);
+  $('.projects').prepend(`<h3 class='proj-name'>${project.name}</h3>`);
+  $('select').append(`<option>${project.name}</option>`);
 
   palettes.forEach(palette => {
     $('.palette').append(`

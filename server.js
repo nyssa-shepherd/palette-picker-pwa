@@ -5,10 +5,14 @@ const app = express();
 app.use(express.static('public'));
 app.set('port', process.env.PORT || 3000);
 
-app.locals.projects = [
-  {id: 1, projectName: 'Nyssa\'s Hot Shit Project'},
-  {id: 2, projectName: 'Nyssa\'s Bad Ass Project'}
-];
+const environment = process.env.NODE_ENV || 'development';
+const configuration = require('./knexfile')[environment];
+const database = require('knex')(configuration);
+
+// app.locals.projects = [
+//   {id: 1, projectName: 'Nyssa\'s Hot Shit Project'},
+//   {id: 2, projectName: 'Nyssa\'s Bad Ass Project'}
+// ];
 app.locals.palettes = [
   {
     id: 1, 
@@ -22,17 +26,22 @@ app.locals.palettes = [
   {
     id: 2, 
     paletteName: 'Gnarley Green',
-    color0: '#b332cd',
-    color1: '#52d6a4',
-    color2: '#9839b3',
-    color3: '#e409c1',
-    color4: '#1a3cb2'
+    color0: '#aae40d',
+    color1: '#07d98d',
+    color2: '#45de03',
+    color3: '#63790c',
+    color4: '#3a7e4d'
   }
 ]
 
 app.get('/api/v1/projects', (request, response) => {
-  const { projects } = app.locals;
-  response.status(200).json(projects);
+  database('projects').select()
+    .then((projects) => {
+      response.status(200).json(projects);
+    })
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
 });
 
 app.post('/api/v1/projects', (request, response) => {
