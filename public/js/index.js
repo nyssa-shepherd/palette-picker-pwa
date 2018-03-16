@@ -23,7 +23,6 @@ const renderProject = (project) => {
 }
 
 const renderPalette = (palettes, project) => {
-  console.log(palettes);
   palettes.forEach(palette => {
     $('.palette').append(`
       <h4>${palette.name}</h4>
@@ -54,10 +53,7 @@ const submitProject = async(e) => {
 const savePalette = async(e) => {
   e.preventDefault();
   const name = $('#pal-name-input').val();
-  let projMatch = projectArr.find( project => {
-    return project.name ===  $('select').val()? project : null;
-  }); 
-
+  let projMatch = projectArr.find( project => project.name ===  $('select').val()? project : null); 
   let color0 = hexArr[0]
   let color1 = hexArr[1]
   let color2 = hexArr[2]
@@ -65,6 +61,7 @@ const savePalette = async(e) => {
   let color4 = hexArr[4]
   let projects_id = projMatch.id
   let palette = { name, color0, color1, color2, color3, color4, projects_id }
+
   postPalette(projMatch, palette)
 }
 
@@ -74,9 +71,9 @@ const postPalette = async(projMatch, palette) => {
   body: JSON.stringify(palette), 
   headers: new Headers({ 'Content-Type': 'application/json' })
 })
-await post.json();
-await fetchPalettes(projMatch);
-$('#pal-name-input').val('');
+  await post.json();
+  await fetchPalettes(projMatch);
+  $('#pal-name-input').val('');
 }
 
 const callHex = () => {
@@ -114,12 +111,24 @@ const setColors = () => {
 }
 
 const lockColor = (e) => {
-  const { parentElement } = e.target;
+  const { classList } = e.target.parentElement;
 
-  parentElement.classList.toggle('locked');
-  parentElement.classList.contains('locked') ?
+  classList.toggle('locked');
+  classList.contains('locked') ?
     console.log('locked') : console.log('unlocked');
 }
+
+const deletePalette = async(e) => {
+  e.target.classList.contains('trash-img') ? console.log(e.target.parentElement) : null;
+  // const paletteId = palette.id;
+
+  // const deleteFetch = await fetch(`/api/v1/palettes/${paletteId}`, {
+  //   method: 'DELETE'});
+
+  // e.target.parentElement.remove();
+};
+
+
 
 $(document).ready(() => {
   fetchProjects();
@@ -129,6 +138,9 @@ $('.save-pal-btn').on('click', savePalette);
 $('.save-project-button').on('click', submitProject);
 $('.gen-button').on('click', callHex);
 $('.lock-btn').on('click', lockColor);
+
+$('.palette').on('click', deletePalette)
+
 
 
 
