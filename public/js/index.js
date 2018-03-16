@@ -4,10 +4,10 @@ const projectArr = [];
 const fetchProjects = async() => {
   const response = await fetch('/api/v1/projects');
   const projects = await response.json();
-  projects.forEach( async project => {
-    await projectArr.push(project);
-    await renderProject(project);
-    await fetchPalettes(project);
+  projects.forEach(project => {
+    projectArr.push(project);
+    renderProject(project);
+    fetchPalettes(project);
   });
 }
 
