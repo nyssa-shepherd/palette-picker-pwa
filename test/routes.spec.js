@@ -19,6 +19,17 @@ describe('Client Routes', () => {
       throw err;
     });
   });
+
+  it('should return a 404 for a route that does not exist', () => {
+    return chai.request(server)
+    .get('/sad')
+    .then(response => {
+      response.should.have.status(404);
+    })
+    .catch(err => {
+      throw err;
+    });
+  });
 });
 
 describe('API Routes', () => {
@@ -71,7 +82,6 @@ describe('API Routes', () => {
         throw err;
       });
     });
-
 });
 
   describe('GET /api/v1/palettes', () => {
@@ -103,7 +113,7 @@ describe('API Routes', () => {
 
   });
 
-  describe('POST /api/v1/projects', () => {
+  describe('POST /api/v1/palettes', () => {
 
     //   it('should create a new project', () => {
     //     return chai.request(server)
@@ -127,6 +137,17 @@ describe('API Routes', () => {
       .then(response => {
         response.should.have.status(422);
         response.body.error.should.equal('Expected format: { \n name: <String>, \n  color0: <String>, \n  color1: <String>, \n color2: <String>, \n color3: <String>, \n color4: <String>,\n projects_id: <Number>}. You\'re missing a "name" property.}');
+      })
+      .catch(err => {
+        throw err;
+      });
+    });
+
+    it('should return a 404 for a route that does not exist', () => {
+      return chai.request(server)
+      .post('/projects/:1003/palettes')
+      .then(response => {
+        response.should.have.status(404);
       })
       .catch(err => {
         throw err;
