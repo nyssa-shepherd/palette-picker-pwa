@@ -68,16 +68,17 @@ const savePalette = async(e) => {
   let palette = { name, color0, color1, color2, color3, color4, projects_id }
   postPalette(projMatch, palette)
 }
-  const postPalette = async(projMatch, palette) => {
-    const post = await fetch(`/api/v1/projects/${projMatch.id}/palettes`, {
-    method: 'POST',
-    body: JSON.stringify(palette), 
-    headers: new Headers({ 'Content-Type': 'application/json' })
-  })
-  console.log(post)
-  const postProject = await post.json();
-  
-  $('#pal-name-input').val('');
+
+const postPalette = async(projMatch, palette) => {
+  const post = await fetch(`/api/v1/projects/${projMatch.id}/palettes`, {
+  method: 'POST',
+  body: JSON.stringify(palette), 
+  headers: new Headers({ 'Content-Type': 'application/json' })
+})
+console.log(post)
+const postProject = await post.json();
+
+$('#pal-name-input').val('');
 }
 
 const callHex = () => {

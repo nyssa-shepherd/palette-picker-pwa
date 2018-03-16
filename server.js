@@ -100,3 +100,5 @@ app.post('/api/v1/projects/:id/palettes', (request, response) => {
 app.listen(app.get('port'), () => {
   console.log('Express intro running on localhost:3000');
 });
+
+module.exports = app;
