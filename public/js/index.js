@@ -1,29 +1,29 @@
 let hexArr = [];
 const projectArr = [];
-const projObj = {
-  name: ''
-}
 
 const fetchProjects = async() => {
   const response = await fetch('/api/v1/projects');
   const projects = await response.json();
   projects.forEach(project => {
     projectArr.push(project);
-    fetchPalettes(project)
+    renderProject(project);
+    fetchPalettes(project);
   });
 }
 
 const fetchPalettes = async(project) => {
-  console.log(project)
   const response = await fetch(`/api/v1/projects/${project.id}/palettes`);
   const palettes = await response.json();
-  await renderProject(palettes, project);
+  await renderPalette(palettes);
 }
 
-const renderProject = (palettes, project) => {
+const renderProject = (project) => {
   $('.projects').prepend(`<h3 class='proj-name'>${project.name}</h3>`);
   $('select').append(`<option>${project.name}</option>`);
+}
 
+const renderPalette = (palettes, project) => {
+  console.log(palettes);
   palettes.forEach(palette => {
     $('.palette').append(`
       <h4>${palette.name}</h4>
@@ -74,9 +74,8 @@ const postPalette = async(projMatch, palette) => {
   body: JSON.stringify(palette), 
   headers: new Headers({ 'Content-Type': 'application/json' })
 })
-console.log(post)
-const postProject = await post.json();
-
+await post.json();
+await fetchPalettes(projMatch);
 $('#pal-name-input').val('');
 }
 
