@@ -119,7 +119,7 @@ const lockColor = (e) => {
 }
 
 const deletePalette = async(e) => {
-  e.target.classList.contains('trash-img') ? console.log(e.target.parentElement.) : null;
+  e.target.classList.contains('trash-img') ? console.log(e.target.parentElement) : null;
   // const projectId = palette.project_id;
   // const paletteId = palette.id;
 
