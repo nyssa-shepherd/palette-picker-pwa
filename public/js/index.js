@@ -7,7 +7,10 @@ const projObj = {
 const fetchProjects = async() => {
   const response = await fetch('/api/v1/projects');
   const projects = await response.json();
-  projects.forEach(project => fetchPalettes(project));
+  projects.forEach(project => {
+    projectArr.push(project);
+    fetchPalettes(project)
+  });
 }
 
 const fetchPalettes = async(project) => {
@@ -33,45 +36,48 @@ const renderProject = (palettes, project) => {
         <div class='trash-img'><div/>
       </div>
     `)
-  });
-  
+  });  
 }
 
 const submitProject = async(e) => {
   e.preventDefault();
-  let input = $('#project-input').val();
-  projObj.name = input;
-
-  projectArr.push(projObj);
-
   const post = await fetch('/api/v1/projects', {
     method: 'POST',
-    body: input, 
+    body: JSON.stringify({ name: $('#project-input').val()}), 
     headers: new Headers({ 'Content-Type': 'application/json' })
   })
-
-  const postProject = await post.json();
-  console.log(postProject);
-
-  // .catch(error => console.error('Error:', error))
-  // .then(response => console.log('Success:', response));
-
+  await post.json();
+  await fetchProjects();
   $('#project-input').val(''); 
 }
 
-const savePalette = (e) => {
+const savePalette = async(e) => {
   e.preventDefault();
-  const palObj = {
-    projName: $('select').val(),
-    palName: $('#pal-name-input').val(),
-    colors: hexArr
-  }
+  const name = $('#pal-name-input').val();
+  let projMatch = projectArr.find( project => {
+    return project.name ===  $('select').val()? project : null;
+  }); 
 
-  let match = projectArr.find(proj => proj.name === palObj.projName ? proj : null);
-  match.palName.push(palObj.palName);
-  match.colors = palObj.colors;
-  console.log(projectArr);
-  $('#pal-name-input').val('');
+  let color0 = hexArr[0]
+  let color1 = hexArr[1]
+  let color2 = hexArr[2]
+  let color3 = hexArr[3]
+  let color4 = hexArr[4]
+  let projects_id = projMatch.id
+  let palette = { name, color0, color1, color2, color3, color4, projects_id }
+  postPalette(projMatch, palette)
+}
+
+const postPalette = async(projMatch, palette) => {
+  const post = await fetch(`/api/v1/projects/${projMatch.id}/palettes`, {
+  method: 'POST',
+  body: JSON.stringify(palette), 
+  headers: new Headers({ 'Content-Type': 'application/json' })
+})
+console.log(post)
+const postProject = await post.json();
+
+$('#pal-name-input').val('');
 }
 
 const callHex = () => {
