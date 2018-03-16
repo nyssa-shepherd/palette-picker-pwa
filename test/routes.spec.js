@@ -8,7 +8,17 @@ const server = require('../server');
 chai.use(chaiHttp);
 
 describe('Client Routes', () => {
-
+  it('should return the homepage', () => {
+    return chai.request(server)
+    .get('/')
+    .then(response => {
+      response.should.have.status(200);
+      response.should.be.html;
+    })
+    .catch(err => {
+      throw err;
+    });
+  });
 });
 
 describe('API Routes', () => {
@@ -30,24 +40,11 @@ describe('API Routes', () => {
       });
     });
 
-    it('should not create a record with missing data', () => {
-      return chai.request(server)
-      .post('/api/v1/projects')
-      .send()
-      .then(response => {
-        response.should.have.status(422);
-        response.body.error.should.equal('Expected format: { name: <String> }. You\'re missing a "name" property.');
-      })
-      .catch(err => {
-        throw err;
-      });
-    });
-
   });
 
-  // describe('POST /api/v1/projects', () => {
+  describe('POST /api/v1/projects', () => {
 
-  //   it('should create a new project', () => {
+  //   it('should create a new ', () => {
   //     return chai.request(server)
   //     .post('/api/v1/projects') 
   //     .send({ name: 'My Rad Project' })
@@ -62,7 +59,20 @@ describe('API Routes', () => {
   //     });
   //   });
 
-  // });
+    it('should not create a record with missing data', () => {
+      return chai.request(server)
+      .post('/api/v1/projects')
+      .send()
+      .then(response => {
+        response.should.have.status(422);
+        response.body.error.should.equal('Expected format: { name: <String> }. You\'re missing a "name" property.');
+      })
+      .catch(err => {
+        throw err;
+      });
+    });
+
+});
 
   describe('GET /api/v1/palettes', () => {
 
@@ -92,4 +102,37 @@ describe('API Routes', () => {
     });
 
   });
+
+  describe('POST /api/v1/projects', () => {
+
+    //   it('should create a new project', () => {
+    //     return chai.request(server)
+    //     .post('/api/v1/projects') 
+    //     .send({ name: 'My Rad Project' })
+    //     .then(response => {
+    //       response.should.have.status(201); 
+    //       response.body.should.be.a('object');
+    //       response.body.should.have.property('name');
+    //       response.body.name.should.equal('My Rad Project');
+    //     })
+    //     .catch(err => {
+    //       throw err;
+    //     });
+    //   });
+  
+    it('should not create a record with missing data', () => {
+      return chai.request(server)
+      .post('/api/v1/projects/5/palettes')
+      .send()
+      .then(response => {
+        response.should.have.status(422);
+        response.body.error.should.equal('Expected format: { \n name: <String>, \n  color0: <String>, \n  color1: <String>, \n color2: <String>, \n color3: <String>, \n color4: <String>,\n projects_id: <Number>}. You\'re missing a "name" property.}');
+      })
+      .catch(err => {
+        throw err;
+      });
+    });
+  
+  });
+
 });
