@@ -46,7 +46,7 @@ const submitProject = async(e) => {
     body: JSON.stringify({ name: $('#project-input').val()}), 
     headers: new Headers({ 'Content-Type': 'application/json' })
   })
-  const postProject = await post.json();
+  await post.json();
   await fetchProjects();
   $('#project-input').val(''); 
 }

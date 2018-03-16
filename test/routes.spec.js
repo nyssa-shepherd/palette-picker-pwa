@@ -22,7 +22,6 @@ describe('API Routes', () => {
         response.should.have.status(200);
         response.should.be.json;
         response.body.should.be.a('array');
-        response.body.length.should.equal(1);
         response.body[0].should.have.property('name');
         response.body[0].name.should.equal('Nyssa\'s Project');
       })
@@ -33,17 +32,46 @@ describe('API Routes', () => {
 
   });
 
-  describe('POST /api/v1/projects', () => {
+  // describe('POST /api/v1/projects', () => {
 
-    it('should create a new project', () => {
+  //   it('should create a new project', () => {
+  //     return chai.request(server)
+  //     .post('/api/v1/projects') 
+  //     .send({ name: 'My Rad Project' })
+  //     .then(response => {
+  //       response.should.have.status(201); 
+  //       response.body.should.be.a('object');
+  //       response.body.should.have.property('name');
+  //       response.body.name.should.equal('My Rad Project');
+  //     })
+  //     .catch(err => {
+  //       throw err;
+  //     });
+  //   });
+
+  // });
+
+  describe('GET /api/v1/palettes', () => {
+
+    it('should return all of the palettes', () => {
       return chai.request(server)
-      .post('/api/v1/projects') 
-      .send({ name: 'My Rad Project' })
+      .get('/api/v1/palettes')
       .then(response => {
-        response.should.have.status(201); 
-        response.body.should.be.a('object');
-        response.body.should.have.property('name');
-        response.body.name.should.equal('My Rad Project');
+        response.should.have.status(200);
+        response.should.be.json;
+        response.body.should.be.a('array');
+        response.body[0].should.have.property('name');
+        response.body[0].name.should.equal('Bitchin Blue');
+        response.body[0].should.have.property('color0');
+        response.body[0].color0.should.equal('#3b73f2');
+        response.body[0].should.have.property('color1');
+        response.body[0].color1.should.equal('#08bbf3');
+        response.body[0].should.have.property('color2');
+        response.body[0].color2.should.equal('#4112e1');
+        response.body[0].should.have.property('color3');
+        response.body[0].color3.should.equal('#287b95');
+        response.body[0].should.have.property('color4');
+        response.body[0].color4.should.equal('#0a174c');
       })
       .catch(err => {
         throw err;
