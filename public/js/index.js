@@ -113,6 +113,14 @@ const setColors = () => {
   $('.box4').css('background-color', hexArr[4]);
 }
 
+const lockColor = (e) => {
+  const { parentElement } = e.target;
+
+  parentElement.classList.toggle('locked');
+  parentElement.classList.contains('locked') ?
+    console.log('locked') : console.log('unlocked');
+}
+
 $(document).ready(() => {
   fetchProjects();
   genRandomHex();
@@ -120,6 +128,7 @@ $(document).ready(() => {
 $('.save-pal-btn').on('click', savePalette);
 $('.save-project-button').on('click', submitProject);
 $('.gen-button').on('click', callHex);
+$('.lock-btn').on('click', lockColor);
 
 
 
