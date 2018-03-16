@@ -120,14 +120,14 @@ const lockColor = (e) => {
 
 const deletePalette = async(e) => {
   e.target.classList.contains('trash-img') ? console.log(e.target.parentElement) : null;
-  // const projectId = palette.project_id;
   // const paletteId = palette.id;
 
   // const deleteFetch = await fetch(`/api/v1/palettes/${paletteId}`, {
   //   method: 'DELETE'});
 
-  // $(this).parent().remove();
+  // e.target.parentElement.remove();
 };
+
 
 
 $(document).ready(() => {
@@ -138,7 +138,9 @@ $('.save-pal-btn').on('click', savePalette);
 $('.save-project-button').on('click', submitProject);
 $('.gen-button').on('click', callHex);
 $('.lock-btn').on('click', lockColor);
+
 $('.palette').on('click', deletePalette)
+
 
 
 
