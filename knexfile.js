@@ -30,6 +30,5 @@ module.exports = {
     seeds: {
       directory: './db/seeds/test'
     }
->>>>>>> 405e61d7966a18f223218fedb5266937f90bc6b5
   }
 };
