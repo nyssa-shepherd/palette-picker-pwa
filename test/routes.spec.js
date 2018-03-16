@@ -4,7 +4,6 @@ const chai = require('chai');
 const should = chai.should();
 const chaiHttp = require('chai-http');
 const server = require('../server');
-//const knex = require('../db/knex');
 
 chai.use(chaiHttp);
 
@@ -13,12 +12,6 @@ describe('Client Routes', () => {
 });
 
 describe('API Routes', () => {
-  // beforeEach((done) => {
-  //   knex.seed.run()
-  //   .then(() => {
-  //     done();
-  //   });
-  // });
 
   describe('GET /api/v1/projects', () => {
 
@@ -32,6 +25,25 @@ describe('API Routes', () => {
         response.body.length.should.equal(1);
         response.body[0].should.have.property('name');
         response.body[0].name.should.equal('Nyssa\'s Project');
+      })
+      .catch(err => {
+        throw err;
+      });
+    });
+
+  });
+
+  describe('POST /api/v1/projects', () => {
+
+    it('should create a new project', () => {
+      return chai.request(server)
+      .post('/api/v1/projects') 
+      .send({ name: 'My Rad Project' })
+      .then(response => {
+        response.should.have.status(201); 
+        response.body.should.be.a('object');
+        response.body.should.have.property('name');
+        response.body.name.should.equal('My Rad Project');
       })
       .catch(err => {
         throw err;

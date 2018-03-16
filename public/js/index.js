@@ -41,14 +41,13 @@ const renderProject = (palettes, project) => {
 
 const submitProject = async(e) => {
   e.preventDefault();
-  let name = $('#project-input').val();
   const post = await fetch('/api/v1/projects', {
     method: 'POST',
-    body: JSON.stringify(name), 
+    body: JSON.stringify({ name: $('#project-input').val()}), 
     headers: new Headers({ 'Content-Type': 'application/json' })
   })
   const postProject = await post.json();
-
+  await fetchProjects();
   $('#project-input').val(''); 
 }
 
