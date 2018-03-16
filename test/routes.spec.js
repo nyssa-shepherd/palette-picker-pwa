@@ -30,6 +30,19 @@ describe('API Routes', () => {
       });
     });
 
+    it('should not create a record with missing data', () => {
+      return chai.request(server)
+      .post('/api/v1/projects')
+      .send()
+      .then(response => {
+        response.should.have.status(422);
+        response.body.error.should.equal('Expected format: { name: <String> }. You\'re missing a "name" property.');
+      })
+      .catch(err => {
+        throw err;
+      });
+    });
+
   });
 
   // describe('POST /api/v1/projects', () => {
