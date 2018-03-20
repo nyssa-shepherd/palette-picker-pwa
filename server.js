@@ -6,6 +6,17 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 app.set('port', process.env.PORT || 3000);
 
+app.use (function (req, res, next) {
+  if (req.secure) {
+          // request was via https, so do no special handling
+          next();
+  } else {
+          // request was via http, so redirect to https
+          res.redirect('https://' + req.headers.host + req.url);
+  }
+});
+
+
 const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
 const database = require('knex')(configuration);
