@@ -10,6 +10,7 @@ const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
 const database = require('knex')(configuration);
 
+
 app.get('/api/v1/projects', (request, response) => {
   database('projects').select()
     .then((projects) => {
@@ -98,6 +99,9 @@ app.post('/api/v1/projects/:id/palettes', (request, response) => {
 });
 
 app.listen(app.get('port'), () => {
+  if (location.protocol != 'https:'){
+    location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+  }
   console.log('Express intro running on localhost:3000');
 });
 
