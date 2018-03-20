@@ -2,24 +2,22 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
+const requireHTTPS = (req, res, next) => {
+  if(req.headers['x-forwarded-proto'] !== 'https') {
+    return res.redirect('https://' + req.get('host') + req.url);
+  }
+  next();
+}
+
+if (process.env.NODE_ENV === 'production') { app.use(requireHTTPS); }
+
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.set('port', process.env.PORT || 3000);
 
-app.use ((req, res, next) => {
-  if (req.secure) {
-    next();
-  } else {
-    console.log('redirect')
-    //res.redirect('https://' + req.headers.host);
-  }
-});
-
-
 const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
 const database = require('knex')(configuration);
-
 
 app.get('/api/v1/projects', (request, response) => {
   database('projects').select()
