@@ -11,7 +11,7 @@ app.use ((req, res, next) => {
     next();
   } else {
     console.log('redirect')
-    res.redirect('https://' + req.headers.host);
+    //res.redirect('https://' + req.headers.host);
   }
 });
 
