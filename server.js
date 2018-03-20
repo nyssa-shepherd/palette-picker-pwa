@@ -6,13 +6,11 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 app.set('port', process.env.PORT || 3000);
 
-app.use (function (req, res, next) {
+app.use ((req, res, next) => {
   if (req.secure) {
-          // request was via https, so do no special handling
-          next();
+    next();
   } else {
-          // request was via http, so redirect to https
-          res.redirect('https://' + req.headers.host + req.url);
+    res.redirect('https://' + req.headers.host + req.url);
   }
 });
 
