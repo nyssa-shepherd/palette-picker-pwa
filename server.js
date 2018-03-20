@@ -10,7 +10,8 @@ app.use ((req, res, next) => {
   if (req.secure) {
     next();
   } else {
-    res.redirect('https://' + app.get('port'));
+    console.log('redirect')
+    res.redirect('https://' + req.url);
   }
 });
 
