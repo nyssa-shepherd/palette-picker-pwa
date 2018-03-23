@@ -1,0 +1,16 @@
+{
+  "short_name": "pp",
+  "name": "Nyssa's Rad Palette Picker",
+  "background_color": "#414141",
+  "theme_color": "#d2d2d2",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://png.pngtree.com/element_origin_min_pic/17/04/16/67938747f261ee0035dac5827c823ac3.jpg",
+      "type": "image/jpg",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "https://nyssas-rad-palette-picker-pwa.herokuapp.com/"
+}
