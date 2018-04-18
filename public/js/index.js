@@ -128,6 +128,17 @@ const deletePalette = async(e) => {
   // e.target.parentElement.remove();
 };
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('../service-worker.js')
+      .then(reg => {
+        console.log('ServiceWorker registration successful');
+      }).catch(err => {
+        console.log(`ServiceWorker registration failed: ${err}`);
+      });
+  });
+}
+
 
 
 $(document).ready(() => {
