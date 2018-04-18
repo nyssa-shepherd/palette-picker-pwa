@@ -7,10 +7,30 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "https://png.pngtree.com/element_origin_min_pic/17/04/16/67938747f261ee0035dac5827c823ac3.jpg",
-      "type": "image/jpg",
-      "sizes": "512x512"
+      "src": "images/hover-lock.png",
+      "type": "image/png",
+      "sizes": "25x25"
+    },
+    {
+      "src": "images/hover-trash.png",
+      "type": "image/png",
+      "sizes": "30x30"
+    },
+    {
+      "src": "images/locked.png",
+      "type": "image/png",
+      "sizes": "25x25"
+    },
+    {
+      "src": "images/trash.png",
+      "type": "image/png",
+      "sizes": "30x30"
+    },
+    {
+      "src": "images/unlock.png",
+      "type": "image/png",
+      "sizes": "25x25"
     }
   ],
-  "start_url": "https://nyssas-rad-palette-picker-pwa.herokuapp.com/"
+  "start_url": "index.html?launcher=true"
 }
